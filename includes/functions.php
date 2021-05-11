@@ -82,3 +82,13 @@ function login_user($con,$email,$password)
     }
 
 }
+
+function submit_form($con,$start_date,$end_date,$reason)
+{
+   
+    $query = "INSERT INTO request (start_date,end_date,reason) VALUES ('$start_date','$end_date','$reason')";
+    
+    mysqli_query($con,$query);
+    header("Location: ../php/main_employee.php");
+    die;
+}
