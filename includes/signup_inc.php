@@ -33,7 +33,11 @@ if(isset($_POST['create_user_btn']))
         exit();  
     }
 
-
+    if (user_exists($con,$email) !== false)
+    {
+        header("Location: ../php/signup.php?error=duplicateuser");
+        exit(); 
+    }
 
     create_user($con,$firstname,$lastname,$email,$password,$admin_employee);
 
