@@ -74,7 +74,7 @@ exit;
              {
                  ?>
             <tr>
-                <td><?php echo $row['firstname']; ?></td>
+                <td><a href="user_properties.php" style="color:white;"><?php echo $row['firstname']; ?></td>
                 <td><?php echo $row['lastname']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['user_type'] ;?></td>
