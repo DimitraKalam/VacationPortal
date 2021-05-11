@@ -16,9 +16,12 @@ exit;
     <div class="admin_page">
         <form action="signup.php" method="POST">
             <input type="submit" name='create_btn' class="create_button" value="Create a user"> 
+        </form>
     </div>
     <div class="logout">
-        <input type="submit" name='create_btn' class="create_button" value="Create a user"> 
+        <form id='contact-form' action="logout.php">
+            <input type="submit" href="logout.php" name='logout_btn' class="logout_btn" value="Logout"> 
+        </form>
     </div>
 </body>
 </html>

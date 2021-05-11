@@ -18,5 +18,12 @@
 <head>
     <title>Main Employee</title>
     <link rel="stylesheet" type="text/css" href="../css/login.css">
-
 </head>
+<body>
+    <div class="logout">
+        <form id='contact-form' action="logout.php">
+            <input type="submit" href="logout.php" name='logout_btn' class="logout_btn" value="Logout"> 
+        </form>
+    </div>
+</body>
+</html>
