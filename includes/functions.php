@@ -42,3 +42,30 @@ function user_exists($con,$email)
     
 }
 
+function login_user($con,$email,$password)
+{
+    $user_exists = user_exists($con,$email);
+
+    if($user_exists == false)
+    {
+        header("Location: ../php/login.php?error=wronglogin");
+        exit();
+    }
+
+    $hashed_pass = $user_exists["password"];
+    $check_pass = password_verify($password,$hashed_pass);
+
+    if($check_pass == false)
+    {
+        header("Location: ../php/login.php?error=wronglogin");
+        exit();
+    }
+    elseif($check_pass == true)
+    {
+        session_start();
+        $_SESSION["user_id"] = $user_exists["user_id"];
+        header("Location: ../php/main_admin.php");
+        exit();
+    }
+
+}

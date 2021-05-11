@@ -17,5 +17,8 @@ exit;
         <form action="signup.php" method="POST">
             <input type="submit" name='create_btn' class="create_button" value="Create a user"> 
     </div>
+    <div class="logout">
+        <input type="submit" name='create_btn' class="create_button" value="Create a user"> 
+    </div>
 </body>
 </html>

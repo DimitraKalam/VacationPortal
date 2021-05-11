@@ -47,6 +47,7 @@ if(isset($_POST['create_user_btn']))
 else
 {
     header("Location: ../php/login.php");
+    exit();
 }
 
 

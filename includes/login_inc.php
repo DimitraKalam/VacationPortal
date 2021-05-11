@@ -1,7 +1,25 @@
 <?php
 
-if(isset($_POST['login_btn'])){
-    header("Location: ../php/main_admin.php");
-exit;
+if(isset($_POST['login_btn']))
+{
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    require_once 'db_connection.php';
+    require_once 'functions.php';
+
+    if ( empty($email) || empty($password) ) 
+    {
+    
+        header("Location: ../php/login.php?error=emptyinput");
+        exit();
+    }
+
+    login_user($con,$email,$password);
+}
+else
+{
+    header("Location: ../php/login.php");
+    exit();
 }
 
