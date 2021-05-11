@@ -25,8 +25,8 @@
         <br>
         <select name="admin_employee" class="form-control" style="height: 45px;" required>
             <option value="0" style="display:none"> -- Please select an option -- </option>
-            <option value="1">Admin</option>
-            <option value="2">Employee</option>
+            <option value="admin">Admin</option>
+            <option value="employee">Employee</option>
         </select>
         <br>
             <input type="submit" name="create_user_btn" class="form-control submit" value="Create"> 
