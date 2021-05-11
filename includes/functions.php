@@ -62,10 +62,23 @@ function login_user($con,$email,$password)
     }
     elseif($check_pass == true)
     {
-        session_start();
-        $_SESSION["user_id"] = $user_exists["user_id"];
-        header("Location: ../php/main_admin.php");
-        exit();
+        $_SESSION["user_type"] = $user_exists["user_type"];
+        //check if user is admin or employee
+        if($user_exists["user_type"] == "admin")
+        {
+            session_start();
+            $_SESSION["user_id"] = $user_exists["user_id"];
+            header("Location: ../php/main_admin.php");
+            exit();
+        }
+        elseif($user_exists["user_type"] == "employee")
+        {
+            session_start();
+            $_SESSION["user_id"] = $user_exists["user_id"];
+            header("Location: ../php/main_employee.php");
+            exit();  
+        }
+
     }
 
 }
