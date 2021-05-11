@@ -154,13 +154,11 @@
        ?>
         <div class="request_table">
          <table>
-            <th>Request id</th>
+            <th>Date created</th>
             <th>Start date</th>
             <th>End date</th>
-            <th>Reason</th>
+            <th>Days requested</th>
             <th>Request status</th>
-            <th>User id</th>
-            <th>Date created</th>
 
             </tr>
 
@@ -170,13 +168,12 @@
              {
                  ?>
             <tr>
-                <td><?php echo $row['request_id']; ?></td>
+                <td><?php echo $row['date_created'] ;?></td>    
                 <td><?php echo $row['start_date']; ?></td>
                 <td><?php echo $row['end_date']; ?></td>
-                <td><?php echo $row['reason'] ;?></td>
+                <td><?php echo abs(floor(strtotime($row['start_date'])/(60*60*24)) - floor(strtotime($row['end_date'])/(60*60*24))+1);?></td>
                 <td><?php echo $row['req_status'] ;?></td>
-                <td><?php echo $row['user_id'] ;?></td>
-                <td><?php echo $row['date_created'] ;?></td>
+
             </tr>
         <?php
              }
