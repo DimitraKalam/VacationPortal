@@ -86,9 +86,25 @@ function login_user($con,$email,$password)
 function submit_form($con,$start_date,$end_date,$reason)
 {
    
-    $query = "INSERT INTO request_form (start_date,end_date,reason) VALUES ('$start_date','$end_date','$reason')";
+    $query = "INSERT INTO request_form (start_date,end_date,reason,req_status) VALUES ('$start_date','$end_date','$reason','pending')";
     
     mysqli_query($con,$query);
     header("Location: ../php/main_employee.php");
     die;
 }
+
+function update_employee($con,$firstname,$new_firstname,$new_lastname,$new_email,$new_admin_employee) 
+{
+    $query = "UPDATE users 
+    SET firstname='$new_firstname',lastname='$new_lastname',email='$new_email', user_type='$new_admin_employee' 
+    where firstname='$fistname' ";
+    mysqli_query($con,$query);
+    if(mysqli_query($con,$query)){
+        echo 'Records were updated successfully.';
+    } else {
+        echo 'ERROR: Could not able to execute $sql. ' . mysqli_error($link);
+    }
+    header("Location: ../php/main_admin.php");
+    die;
+}
+
