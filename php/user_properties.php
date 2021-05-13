@@ -12,18 +12,18 @@ if(isset($_POST['update_btn']))
 
     $firstname = $_GET['firstname'];
 
-    // update_employee($con,$firstname,$new_firstname,$new_lastname,$new_email,$new_admin_employee);
-    $query = "UPDATE users 
-    SET firstname='$new_firstname',lastname='$new_lastname',email='$new_email', user_type='$new_admin_employee' 
-    where firstname='$fistname' ";
-    mysqli_query($con,$query);
-    if(mysqli_query($con,$query)){
-        echo 'Records were updated successfully.';
-    } else {
-        echo 'ERROR: Could not able to execute $sql. ' . mysqli_error($link);
-    }
-    header("Location: ../php/main_admin.php");
-    die;
+    update_employee($con,$firstname,$new_firstname,$new_lastname,$new_email,$new_admin_employee);
+    // $query = "UPDATE users 
+    // SET firstname='$new_firstname',lastname='$new_lastname',email='$new_email', user_type='$new_admin_employee' 
+    // where firstname='$fistname' ";
+    // mysqli_query($con,$query);
+    // if(mysqli_query($con,$query)){
+    //     echo 'Records were updated successfully.';
+    // } else {
+    //     echo 'ERROR: Could not able to execute $sql. ' . mysqli_error($link);
+    // }
+    // header("Location: ../php/main_admin.php");
+    // die;
 
 
 }
@@ -80,7 +80,7 @@ if(isset($_POST['update_btn']))
             <?php
              }
              ?>
-             <form id='contact-form' method="POST" action="">
+             <form id='contact-form' method="POST" action="../includes/functions.php">
                 <input type="submit" name="update_btn" class="form-control submit" value="Update"> 
             </form>
     </div>
