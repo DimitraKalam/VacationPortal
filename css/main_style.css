@@ -1,0 +1,114 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-size: cover;
+    background-color: #135864;
+    background-position: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.title
+{
+    margin-top: 80px;
+    color: bisque;
+}
+
+.title h1
+{
+    font-size: 25px;
+    line-height: 20px;
+}
+
+table 
+{
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70px;
+    margin-top: 20px;
+}
+    
+table, th, td 
+{
+    border: 1px solid white;
+    color: white;
+}
+    
+th 
+{
+    background-color: #4CAF50;
+    color: white;
+    height: 70px;
+}
+
+td 
+{
+    height: 50px;
+}
+    
+#logout_btn
+{
+    background: #e66022;
+    border-color: transparent;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    height: 50px;
+    margin-top: 20px;
+    margin-right: 10px;
+    position:fixed; 
+    right:90px; 
+    top:20px;
+    border-radius: 20px;
+}
+    
+#logout_btn:hover
+{
+    background: #e27542;
+    cursor: pointer;
+}
+
+#inside_btn
+{
+    background: #fafafa;
+    border-color: transparent;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    height: 50px;
+    margin-top: 20px;
+    margin-right: 10px;
+    border-radius: 20px;
+}
+    
+#inside_btn:hover
+{
+    background: #769e8a;
+    cursor: pointer;
+}
+
+a:link 
+{
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited 
+{
+    color: #ffffff;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover 
+{
+    color: #429445;
+    background-color: transparent;
+    text-decoration: underline;
+}

@@ -1,0 +1,67 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-size: cover;
+    background-color: #135864;
+    background-position: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.title
+{
+    margin-top: 80px;
+    color: bisque;
+    text-transform: uppercase;
+}
+
+.title h1
+{
+    font-size: 35px;
+    line-height: 20px;
+}
+
+.title h2
+{
+    font-size: 20px;
+}
+
+form
+{
+    margin-top: 50px;
+}
+
+.form-style
+{
+    width: 600px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid rgb(233, 233, 233);
+    color: #fff;
+    font-size: 18px;
+}
+
+input
+{
+    height: 45px;
+}
+
+form .submit
+{
+    background: #e66022;
+    border-color: transparent;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    height: 50px;
+    margin-top: 20px;
+}
+
+form .submit:hover
+{
+    background: #e27542;
+    cursor: pointer;
+}
