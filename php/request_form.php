@@ -10,6 +10,12 @@
     <link rel="stylesheet" type="text/css" href="../css/request_signup_style.css">
 </head>
 <body>
+    <div class="go_back">
+            <form action="main_admin.php">
+                <input id="go_back" type="submit" href="main_admin.php" name='go_back' class="go_back" value="Go Back"> 
+            </form>
+        <br>
+    </div>
     <div class='contact-title'>
         <h1>Fill in the submission form</h1>
     </div>

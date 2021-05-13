@@ -6,12 +6,17 @@
 
 </head>
 <body>
-    <div class='contact-title'>
-        <h1>Insert image</h1>
-        <h2>Please sign up your employee</h2>
+    <div class="go_back">
+            <form action="main_admin.php">
+                <input id="go_back" type="submit" href="main_admin.php" name='go_back' class="go_back" value="Go Back"> 
+            </form>
+        <br>
     </div>
-    <div class="contact-form">
-        <form id='contact-form' method="POST" action="../includes/signup_inc.php">
+    <div class='contact-title'>
+        <h1>Please sign up your employee</h1>
+    </div>
+    <div>
+        <form method="POST" action="../includes/signup_inc.php">
         <input name="firstname" type="text" class="form-control" placeholder="First Name" required>
         <br>
         <input name="lastname" type="text" class="form-control" placeholder="Last Name" required>
