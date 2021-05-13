@@ -2,20 +2,20 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/login_style.css">
 </head>
 <body>
-    <div class='contact-title'>
-        <h1>Insert image</h1>
-        <h2>Please sign in with your credentials</h2>
+    <div class='title'>
+        <h1>Login</h1>
+        <h2>Please login with your credentials</h2>
     </div>
-    <div class="contact-form">
-        <form id='contact-form' method="POST" action="../includes/login_inc.php">
-        <input name="email" type="email" class="form-control" placeholder="Email" required>
+    <div>
+        <form method="POST" action="../includes/login_inc.php">
+        <input name="email" type="email" class="form-style" placeholder="Email" required>
         <br>
-        <input name="password" type="password" class="form-control" placeholder="Password" required>
+        <input name="password" type="password" class="form-style" placeholder="Password" required>
         <br>
-            <input type="submit" name="login_btn" class="form-control submit" value="Login"> 
+        <input type="submit" name="login_btn" class="form-style submit" value="Login"> 
     </div>
 </body>
 </html>

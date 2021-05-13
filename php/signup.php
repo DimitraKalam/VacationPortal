@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Signup</title>
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/request_signup_style.css">
 
 </head>
 <body>
@@ -24,8 +24,8 @@
         <br>
         <select name="admin_employee" class="form-control" style="height: 45px;" required>
             <option value="0" style="display:none"> -- Please select an option -- </option>
-            <option value="admin">Admin</option>
-            <option value="employee">Employee</option>
+            <option value="admin">admin</option>
+            <option value="employee">employee</option>
         </select>
         <br>
             <input type="submit" name="create_user_btn" class="form-control submit" value="Create"> 
