@@ -85,26 +85,46 @@ function login_user($con,$email,$password)
 
 function submit_form($con,$start_date,$end_date,$reason)
 {
-   
+    $result;
     $query = "INSERT INTO request_form (start_date,end_date,reason,req_status) VALUES ('$start_date','$end_date','$reason','pending')";
     
-    mysqli_query($con,$query);
-    header("Location: ../php/main_employee.php");
-    die;
+    if (mysqli_query($con,$query))
+    {
+        $result = true;
+    }
+    else
+    {
+        $result = false;
+    }
+
 }
 
 function update_employee($con,$firstname,$new_firstname,$new_lastname,$new_email,$new_admin_employee) 
 {
     $query = "UPDATE users 
     SET firstname='$new_firstname',lastname='$new_lastname',email='$new_email', user_type='$new_admin_employee' 
-    where firstname='$fistname' ";
+    where firstname='$firstname' ";
     mysqli_query($con,$query);
     if(mysqli_query($con,$query)){
-        echo 'Records were updated successfully.';
+        header("Location: ../php/main_admin.php");
+        exit(); 
     } else {
         echo 'ERROR: Could not able to execute $sql. ' . mysqli_error($link);
     }
-    header("Location: ../php/main_admin.php");
-    die;
+
 }
 
+// function emai_sent()
+// {
+// // $to_email = 'vacation.portal.email@gmail.com';
+// $subject = 'Simple Email Test via PHP';
+// $body = "Hi,nn This is test email send by PHP Script";
+// $headers = "From: vacation.portal.email@gmail.com";
+// // mail($to_email, $subject, $body, $headers);
+// $email_sent =mail($to_email, $subject, $body, $headers);
+// if ($email_sent == true) {
+//     echo "Email successfully sent to $to_email...";
+// } else {
+//     echo "Email sending failed...";
+// }
+// }
