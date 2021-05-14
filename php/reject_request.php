@@ -26,7 +26,7 @@ $to_email = 'vacation.portal.email@gmail.com';
 $from = $email;
 $subject = "Submission Form";
 $message = 
-"Dear employee, your supervisor has accepted your application
+"Dear employee, your supervisor has rejected your application
 submitted on " .$date. ". ";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
