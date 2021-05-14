@@ -83,10 +83,10 @@ function login_user($con,$email,$password)
 
 }
 
-function submit_form($con,$start_date,$end_date,$reason)
+function submit_form($con,$email,$start_date,$end_date,$reason)
 {
     $result;
-    $query = "INSERT INTO request_form (start_date,end_date,reason,req_status) VALUES ('$start_date','$end_date','$reason','pending')";
+    $query = "INSERT INTO request_form (request_email,start_date,end_date,reason,req_status) VALUES ('$email','$start_date','$end_date','$reason','pending')";
     
     if (mysqli_query($con,$query))
     {
