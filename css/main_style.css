@@ -4,10 +4,12 @@ body
     padding: 0;
     text-align: center;
     background-size: cover;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background: #4A00E0;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #691FFF, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
 .title
 {
     margin-top: 80px;
@@ -28,6 +30,8 @@ table
     margin-right: auto;
     height: 70px;
     margin-top: 20px;
+    letter-spacing: 2px;
+
 }
     
 table, th, td 
@@ -50,7 +54,7 @@ td
     
 #logout_btn
 {
-    background: #C91835;
+    background: #e66022;
     border-color: transparent;
     color: #fff;
     font-size: 20px;

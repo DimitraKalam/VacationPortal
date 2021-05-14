@@ -1,9 +1,10 @@
 <?php
 
-
+//used in signup_inc.php
+//insert data into 'users' table
 function create_user($con,$firstname,$lastname,$email,$password,$admin_employee)
 {
-
+    //hashing the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $query = "INSERT INTO users (user_id,firstname,lastname,email,password,user_type) VALUES ('$user_id','$firstname','$lastname','$email','$hashed_password','$admin_employee')";
     
@@ -28,7 +29,7 @@ function user_exists($con,$email)
 
     $resultdata = mysqli_stmt_get_result($stmt);
 
-    if($row = mysqli_fetch_assoc($resultdata)) //true if there data 
+    if($row = mysqli_fetch_assoc($resultdata)) //true if there are data 
     {
         return $row; //return the data if the user exists
     }
@@ -42,6 +43,8 @@ function user_exists($con,$email)
     
 }
 
+//used in login_inc.php
+//update the user’s properties
 function login_user($con,$email,$password)
 {
     $user_exists = user_exists($con,$email);
@@ -99,32 +102,33 @@ function submit_form($con,$email,$start_date,$end_date,$reason)
 
 }
 
+//used in user_properties.php
+//update the user’s properties
 function update_employee($con,$firstname,$new_firstname,$new_lastname,$new_email,$new_admin_employee) 
 {
     $query = "UPDATE users 
     SET firstname='$new_firstname',lastname='$new_lastname',email='$new_email', user_type='$new_admin_employee' 
     where firstname='$firstname' ";
     mysqli_query($con,$query);
-    if(mysqli_query($con,$query)){
+    if(mysqli_query($con,$query))
+    {
         header("Location: ../php/main_admin.php");
         exit(); 
-    } else {
-        echo 'ERROR: Could not able to execute $sql. ' . mysqli_error($link);
+    } 
+    else 
+    {
+        echo 'ERROR: Not able to execute query.';
     }
 
 }
 
-// function emai_sent()
-// {
-// // $to_email = 'vacation.portal.email@gmail.com';
-// $subject = 'Simple Email Test via PHP';
-// $body = "Hi,nn This is test email send by PHP Script";
-// $headers = "From: vacation.portal.email@gmail.com";
-// // mail($to_email, $subject, $body, $headers);
-// $email_sent =mail($to_email, $subject, $body, $headers);
-// if ($email_sent == true) {
-//     echo "Email successfully sent to $to_email...";
-// } else {
-//     echo "Email sending failed...";
-// }
-// }
+//used in main_?.php
+//fetch firstname of user who is loged in
+function fetch_firstname($con,$email)
+{
+    $query = "SELECT firstname FROM users WHERE email = '$email' ";
+    $result = mysqli_query($con,$query);
+    $row=mysqli_fetch_array($result);
+    $first=$row['firstname'];
+    return $first;
+}

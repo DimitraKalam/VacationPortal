@@ -1,5 +1,6 @@
 <?php
-session_start();  
+session_start(); 
+//if login button is clicked 
 if(isset($_POST['login_btn']))
 {
     $email = $_POST['email'];
@@ -10,12 +11,12 @@ if(isset($_POST['login_btn']))
     require_once 'functions.php';
 
     if ( empty($email) || empty($password) ) 
-    {
-    
+    {    
         header("Location: ../php/login.php?error=emptyinput");
         exit();
     }
 
+    //function login_user in functions.php
     login_user($con,$email,$password);
 }
 else
