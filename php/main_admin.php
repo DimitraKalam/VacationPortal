@@ -4,6 +4,13 @@ if(isset($_POST['create_btn'])){
     header("Location: signup.php");
 exit;
 }
+require_once '../includes/db_connection.php';
+require_once '../includes/functions.php';
+$email = $_SESSION['email'];
+$query = "SELECT firstname FROM users WHERE email = '$email' ";
+$result = mysqli_query($con,$query);
+$row=mysqli_fetch_array($result);
+$first=$row['firstname'];
 ?>
 
 
@@ -14,8 +21,9 @@ exit;
     <link rel="stylesheet" type="text/css" href="../css/main_style.css">
 </head>
 <body>
+
 <div class="title">
-        <h1>Hello <?php echo $_SESSION['email']; ?></h1>
+        <h1>Welcome <?php echo $first; ?> !</h1>
 </div>
     <div class="admin_page">
         <form action="signup.php" method="POST">

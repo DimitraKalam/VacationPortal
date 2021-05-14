@@ -1,5 +1,12 @@
 <?php
-session_start(); 
+session_start();
+require_once '../includes/db_connection.php';
+require_once '../includes/functions.php';
+$email = $_SESSION['email'];
+$query = "SELECT firstname FROM users WHERE email = '$email' ";
+$result = mysqli_query($con,$query);
+$row=mysqli_fetch_array($result);
+$first=$row['firstname'];
 ?>
 
 
@@ -11,7 +18,8 @@ session_start();
 </head>
 <body>
 <div class="title">
-    <h1 style="color:white">hello <?php echo $_SESSION['email']; ?></h1>
+    <h1 style="color:white">Welcome <?php echo $first; ?> !
+    </h1>
 </div>
     <div class="logout">
         <form action="logout.php">
@@ -28,9 +36,11 @@ session_start();
     <?php
         require_once '../includes/db_connection.php';
         require_once '../includes/functions.php';
-        $sql="SELECT * from request_form ORDER BY date_created DESC";
+        
+        $sql="SELECT * from request_form where request_email='". $email."' ORDER BY date_created DESC";
         $result= mysqli_query($con,$sql) or die(mysqli_error());
         $rs=mysqli_fetch_array($result);
+
         if(!$con)
        {
            die('not connected');
@@ -56,7 +66,7 @@ session_start();
                 <td><?php echo $row['date_created'] ;?></td>    
                 <td><?php echo $row['start_date']; ?></td>
                 <td><?php echo $row['end_date']; ?></td>
-                <td><?php echo abs(floor(strtotime($row['start_date'])/(60*60*24)) - floor(strtotime($row['end_date'])/(60*60*24))+1);?></td>
+                <td><?php echo abs(floor(strtotime($row['start_date'])/(60*60*24)) - floor(strtotime($row['end_date'])/(60*60*24)));?></td>
                 <td><?php echo $row['req_status'] ;?></td>
 
             </tr>

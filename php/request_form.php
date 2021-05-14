@@ -11,8 +11,8 @@
 </head>
 <body>
     <div class="go_back">
-            <form action="main_admin.php">
-                <input id="go_back" type="submit" href="main_admin.php" name='go_back' class="go_back" value="Go Back"> 
+            <form action="main_employee.php">
+                <input id="go_back" type="submit" href="main_employee.php" name='go_back' class="go_back" value="Go Back"> 
             </form>
         <br>
     </div>
