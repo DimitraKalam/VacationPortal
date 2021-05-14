@@ -13,16 +13,14 @@ $result = mysqli_query($con,$query);
 $row=mysqli_fetch_array($result);
 $first=$row['firstname'];
 
-$sql = "UPDATE request_form SET req_status='approved' where request_email='$email' and request_id='$id' ";
+$sql = "UPDATE request_form SET req_status='rejected' where request_email='$email' and request_id='$id' ";
 mysqli_query($con,$sql);
 if(mysqli_query($con,$query)){
     echo 'great';
      
-} else 
-{
+} else {
         echo 'ERROR: ';
-}
-
+    }
 
 $to_email = 'vacation.portal.email@gmail.com';
 $from = $email;
@@ -44,5 +42,5 @@ if ($email_sent == true) {
 
 ?>
 <html>
-<h1>You approved <?php echo $first;?> application</h1>
+<h1>You rejected <?php echo $first;?> application</h1>
 </html>
