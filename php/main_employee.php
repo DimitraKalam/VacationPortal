@@ -1,10 +1,19 @@
 <?php
 session_start();
-require_once '../includes/db_connection.php';
-require_once '../includes/functions.php';
-$email = $_SESSION['email'];
-//function fetch_firstname in functions.php
-$first = fetch_firstname($con,$email);
+if(empty($_SESSION['email']))
+{
+  //redirect to login page
+  header('Location: login.php');
+  die;
+}
+else
+{
+    require_once '../includes/db_connection.php';
+    require_once '../includes/functions.php';
+    $email = $_SESSION['email'];
+    //function fetch_firstname in functions.php
+    $first = fetch_firstname($con,$email);
+}
 ?>
 
 <!DOCTYPE html>

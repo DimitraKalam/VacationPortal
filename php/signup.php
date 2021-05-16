@@ -11,7 +11,7 @@
     </form>
     <br>
 </div>
-<div class='contact-title'>
+<div class='title'>
     <h1>Please create a user</h1>
 </div>
 <div>

@@ -1,6 +1,11 @@
 <?php
- session_start();
-    
+session_start();
+if(empty($_SESSION['email']))
+{
+  //redirect to login page
+  header('Location: login.php');
+  die;
+}
 ?>
 
 <!DOCTYPE html>

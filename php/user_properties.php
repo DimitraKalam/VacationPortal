@@ -1,19 +1,28 @@
 <?php
-session_start(); 
-if(isset($_POST['update_btn']))
+session_start();
+if(empty($_SESSION['email']))
 {
-    $new_firstname = $_POST['firstname'];
-    $new_lastname = $_POST['lastname'];
-    $new_email = $_POST['email'];
-    $new_admin_employee = $_POST['admin_employee'];
+  //redirect to login page
+  header('Location: login.php');
+  die;
+}
+else
+{
+    if(isset($_POST['update_btn']))
+    {
+        $new_firstname = $_POST['firstname'];
+        $new_lastname = $_POST['lastname'];
+        $new_email = $_POST['email'];
+        $new_admin_employee = $_POST['admin_employee'];
 
-    require_once '../includes/db_connection.php';
-    require_once '../includes/functions.php';
+        require_once '../includes/db_connection.php';
+        require_once '../includes/functions.php';
 
-    $firstname = $_GET['firstname'];
-    
-    //function update_employee in functions.php
-    update_employee($con,$firstname,$new_firstname,$new_lastname,$new_email,$new_admin_employee);
+        $firstname = $_GET['firstname'];
+        
+        //function update_employee in functions.php
+        update_employee($con,$firstname,$new_firstname,$new_lastname,$new_email,$new_admin_employee);
+    }
 }
 
 ?>

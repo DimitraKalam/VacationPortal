@@ -1,14 +1,19 @@
 <?php
-session_start(); 
-// if(isset($_POST['create_btn'])){
-//     header("Location: signup.php");
-// exit;
-// }
-require_once '../includes/db_connection.php';
-require_once '../includes/functions.php';
-$email = $_SESSION['email'];
-//function fetch_firstname in functions.php
-$first = fetch_firstname($con,$email);
+session_start();
+if(empty($_SESSION['email']))
+{
+  //redirect to login page
+  header('Location: login.php');
+  die;
+}
+else
+{
+    require_once '../includes/db_connection.php';
+    require_once '../includes/functions.php';
+    $email = $_SESSION['email'];
+    //function fetch_firstname in functions.php
+    $first = fetch_firstname($con,$email);
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +43,7 @@ $first = fetch_firstname($con,$email);
         require_once '../includes/functions.php';
 
         //list of existing users
-        $sql="SELECT * from users";
+        $sql="SELECT * from users ORDER BY user_type";
         $result= mysqli_query($con,$sql) or die(mysqli_error());
         $rs=mysqli_fetch_array($result);
         if(!$con)
