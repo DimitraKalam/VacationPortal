@@ -19,3 +19,6 @@ background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, F
 background: #5C258D;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #4389A2, #5C258D);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #4389A2, #5C258D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    <td><?php echo abs(floor(strtotime($row['start_date'])/(60*60*24)+1) - floor(strtotime($row['end_date'])/(60*60*24)));?></td>

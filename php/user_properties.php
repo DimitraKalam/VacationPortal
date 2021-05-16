@@ -1,27 +1,38 @@
 <?php
 session_start();
+//check if there is a user logged in 
 if(empty($_SESSION['email']))
 {
-  //redirect to login page
+  //redirect to login page if no user is logged in
   header('Location: login.php');
   die;
 }
 else
 {
+    //if there is a user logged in show the user_properties.php page
+    //if update_btn button is clicked
     if(isset($_POST['update_btn']))
     {
+        //get the data from the form
         $new_firstname = $_POST['firstname'];
         $new_lastname = $_POST['lastname'];
         $new_email = $_POST['email'];
         $new_admin_employee = $_POST['admin_employee'];
 
+        //embed PHP code from php files
+        //db_connection.php is used to open up a connection to my database
+        //$con opens up a connection to my database 
         require_once '../includes/db_connection.php';
+        //functions.php contains functions that are used in other php files
         require_once '../includes/functions.php';
 
-        $firstname = $_GET['firstname'];
+        //in the "main_admin.php" page when a user's email is clicked the admin is being 
+        //redirected to "user_properties.php?email="
+        //so in the link there is the email of the user 
+        $email = $_GET['email'];
         
         //function update_employee in functions.php
-        update_employee($con,$firstname,$new_firstname,$new_lastname,$new_email,$new_admin_employee);
+        update_employee($con,$email,$new_firstname,$new_lastname,$new_email,$new_admin_employee);
     }
 }
 
@@ -33,7 +44,7 @@ else
     <link rel="stylesheet" type="text/css" href="../css/request_signup_style.css">
 </head>
 <body>
-<div class='contact-title'>
+<div class='title'>
     <h1>Update employee</h1>
 </div>
 <div class="go_back">
@@ -44,22 +55,27 @@ else
 </div>
 <div class="contact-form">
     <?php
+        //embed PHP code from php files
+        //db_connection.php is used to open up a connection to my database
+        //$con opens up a connection to my database 
         require_once '../includes/db_connection.php';
+        //functions.php contains functions that are used in other php files
         require_once '../includes/functions.php';
-        $firstname = $_GET['firstname'];
+
+        //in the "main_admin.php" page when a user's email is clicked the admin is being 
+        //redirected to "user_properties.php?email="
+        //so in the link there is the email of the user 
+        $email = $_GET['email'];
 
         //user fields are pre-populated with the user’s entries
-        $sql="SELECT * from users WHERE firstname='".$firstname."'"; 
-        $result= mysqli_query($con,$sql) or die(mysqli_error());
-        $rs=mysqli_fetch_array($result);
-        if(!$con)
-        {
-           die('not connected');
-        }
+        //$sql consists of a SQL statemen
+        $sql="SELECT * from users WHERE email='".$email."'"; 
+        //mysqli_query() function performs a query against a database
         $con=  mysqli_query($con,$sql);
     ?>
     <?php
-        while($row=  mysqli_fetch_array($con))
+        //fetch data from 'users' table 
+        while($row= mysqli_fetch_array($con))
         {
     ?>
     <form id='contact-form' method="POST" action="">

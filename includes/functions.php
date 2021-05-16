@@ -3,7 +3,8 @@
 //used in signup_inc.php
 //inserts data into 'users' table
 function create_user($con,$firstname,$lastname,$email,$password,$admin_employee)
-{
+{   
+    //$result returns true or false 
     $result;
     //hashing the password so in the column 'password' in 'users' table the real password isn't shown
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -19,6 +20,11 @@ function create_user($con,$firstname,$lastname,$email,$password,$admin_employee)
         //redirect to to main_admin.php page
         header("Location: ../php/main_admin.php");
         die;
+    }
+    else
+    {
+        //if the creation of the user failed return false
+        $result = false;
     }
 }
 
@@ -37,7 +43,7 @@ function user_exists($con,$email)
         //if a user with an email as the one given as an argument DOESN’T exists(signup_inc.php)
         //if a user with the same email as the one given as an argument DOESN’T exists(function login_user)
 
-    //$query consist of a SQL statement and contains a parameter marker represented by question mark (?) 
+    //$query consists of a SQL statement and contains a parameter marker represented by question mark (?) 
     $query = "SELECT * FROM users WHERE email = ?;";
     //mysqli_stmt_init() function initializes a statement and returns an object suitable for mysqli_stmt_prepare()
     //initializing the statement
@@ -144,49 +150,99 @@ function login_user($con,$email,$password)
 
 //used in request_inc.php
 //inserts data into 'request_form' table
+//returns true if the form was successfully submitted
+//returns false if the form submission failed
 function submit_form($con,$email,$start_date,$end_date,$reason)
 {
+    //$result returns true or false 
     $result;
+    //$query consists of a SQL statement
     $query = "INSERT INTO request_form (request_email,start_date,end_date,reason,req_status) VALUES ('$email','$start_date','$end_date','$reason','pending')";
     
+    //mysqli_query() function performs a query against a database
+    //returns false on failure
     if (mysqli_query($con,$query))
     {
+        //if the form was successfully submitted return true
         $result = true;
     }
     else
     {
+        //if the form submission failed return false
         $result = false;
     }
 
 }
 
 //used in user_properties.php
-//update the user’s properties
-function update_employee($con,$firstname,$new_firstname,$new_lastname,$new_email,$new_admin_employee) 
+//update the user’s properties in 'users' table
+function update_employee($con,$email,$new_firstname,$new_lastname,$new_email,$new_admin_employee) 
 {
+    //$query consists of a SQL statemen
     $query = "UPDATE users 
     SET firstname='$new_firstname',lastname='$new_lastname',email='$new_email', user_type='$new_admin_employee' 
-    where firstname='$firstname' ";
+    where email='$email' ";
+    //mysqli_query() function performs a query against a database
+    //returns false on failure
     mysqli_query($con,$query);
     if(mysqli_query($con,$query))
     {
+        //if the table was successfully updated redirect administrator to the main_admin.php page
         header("Location: ../php/main_admin.php");
         exit(); 
     } 
     else 
     {
+        //otherwise echo an error
         echo 'ERROR: Not able to execute query.';
     }
 
 }
 
-//used in main_?.php
-//fetch firstname of user who is loged in
+//used in main_admin.php and main_employee.php
+//returns the first name of the user who is logged in
 function fetch_firstname($con,$email)
 {
+    //$query consists of a SQL statemen    
     $query = "SELECT firstname FROM users WHERE email = '$email' ";
     $result = mysqli_query($con,$query);
     $row=mysqli_fetch_array($result);
     $first=$row['firstname'];
     return $first;
+}
+
+//used in request_inc.php
+//sends an email to the supervisor that contains the name and email of the employee who applied, 
+//the start date,the end date, the reason of the vacation and 
+//the links to approve or reject the application
+//the links contain the user's email($email), request id($req_id) and the date of the request creation($req_date)
+//the subject of the email is Submission Form
+function send_email($first,$email,$start_date,$end_date,$reason,$req_id,$req_date)
+{
+    //the email is being sent to the supervisor
+    $to_email = 'vacation.portal.email@gmail.com';
+    $subject = "Submission Form";
+    $message = 
+    "Dear supervisor, employee " .$first. " (email: " .$email. ") requested for some time off, starting on " .$start_date. " and ending on " .$end_date. ", stating the reason: " .$reason. "
+    <br>
+    Click on one of the below links to approve or reject the application:<br>
+    <a href='http://localhost/VacationPortal/php/accept_request.php?user_email=$email&req_id=$req_id&date=$req_date'>click here to approve the application</a> <br>
+    <a href='http://localhost/VacationPortal/php/reject_request.php?user_email=$email&req_id=$req_id&date=$req_date'>click here to reject the application</a>";
+    //headers needed so the approval and rejection links work
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+    $email_sent =mail($to_email, $subject, $message, $headers);
+    // if ($email_sent == true) 
+    // {
+    //     //if the email was successfully sent 
+    //     header("Location: ../php/main_employee.php");
+    //     die;
+    // } 
+    // else 
+    // {
+    //     //otherwise
+    //     echo "Email sending failed...";
+    // }
+    
 }

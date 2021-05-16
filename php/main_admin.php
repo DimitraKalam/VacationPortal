@@ -1,17 +1,28 @@
 <?php
 session_start();
+//check if there is a user logged in
 if(empty($_SESSION['email']))
 {
-  //redirect to login page
+  //redirect to login page if no user is logged in
   header('Location: login.php');
   die;
 }
 else
 {
+    //if there is a user logged in show the main_admin.php page
+
+    //embed PHP code from php files
+    //db_connection.php is used to open up a connection to my database
+    //$con opens up a connection to my database
     require_once '../includes/db_connection.php';
+    //functions.php contains functions that are used in other php files
     require_once '../includes/functions.php';
+
+    //$email contains the email of the user who is logged in 
     $email = $_SESSION['email'];
+
     //function fetch_firstname in functions.php
+    //returns the first name of the user who is logged in
     $first = fetch_firstname($con,$email);
 }
 ?>
@@ -39,17 +50,17 @@ else
 </div>
 <div>
     <?php
+        //embed PHP code from php files
+        //db_connection.php is used to open up a connection to my database
+        //$con opens up a connection to my database
         require_once '../includes/db_connection.php';
+        //functions.php contains functions that are used in other php files
         require_once '../includes/functions.php';
 
         //list of existing users
+        //$sql consists of a SQL statemen
         $sql="SELECT * from users ORDER BY user_type";
-        $result= mysqli_query($con,$sql) or die(mysqli_error());
-        $rs=mysqli_fetch_array($result);
-        if(!$con)
-        {
-           die('not connected');
-        }
+        //mysqli_query() function performs a query against a database
         $con=mysqli_query($con, $sql);
     ?>
 <div class="users_table">
@@ -63,15 +74,17 @@ else
         </tr>
 
     <?php
+        //fetch data from 'users' table 
         while($row=mysqli_fetch_array($con))
         {
     ?>
         <tr>
-            <!-- each user firstname is clickable, clicking on it takes the admin to the
-            user properties page(user_properties.php) -->
-            <td><?php echo '<a href="user_properties.php?firstname=' . $row['firstname'] . '">' . $row['firstname'] . '</a>' ?></td>
+            <td><?php echo $row['firstname']; ?></td>
             <td><?php echo $row['lastname']; ?></td>
-            <td><?php echo $row['email']; ?></td>
+            <!-- each user email is clickable, clicking on it takes the admin to the
+            user properties page(user_properties.php) 
+            the link contains the email of the user that the administrator clicked on-->
+            <td><?php echo '<a href="user_properties.php?email=' . $row['email'] . '">' . $row['email'] . '</a>' ?></td>
             <td><?php echo $row['user_type'] ;?></td>
         </tr>
     <?php
