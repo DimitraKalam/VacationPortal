@@ -43,7 +43,7 @@ table, th, td
     
 th 
 {
-    background-color: #C918C9;
+    background-color: #25526b;
     color: white;
     height: 70px;
 }
@@ -92,7 +92,7 @@ td
     
 #inside_btn:hover
 {
-    background: #00E0BB;
+    background: #f9f871;
     cursor: pointer;
 }
 

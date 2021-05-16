@@ -55,9 +55,9 @@ input
 
 form .submit
 {
-    background: #e66022;
+    background: #f9f871;
     border-color: transparent;
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -67,7 +67,7 @@ form .submit
 
 form .submit:hover
 {
-    background: #e27542;
+    background: #ffc348;
     cursor: pointer;
 }
 
