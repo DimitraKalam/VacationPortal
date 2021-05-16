@@ -12,7 +12,7 @@ body
 }
 
 
-.contact-title
+.title
 {
     margin-top: 100px;
     color: bisque;
@@ -20,13 +20,13 @@ body
     transition: all 4s ease-in-out;
 }
 
-.contact-title h1
+.title h1
 {
     font-size: 32px;
     line-height: 5px;
 }
 
-.contact-title h2
+.title h2
 {
     font-size: 16px;
 }
